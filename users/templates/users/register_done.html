@@ -1,0 +1,8 @@
+{% extends "users/base.html" %}
+
+{% block content %}
+<h2>Пользователь успешно зарегистрирован</h2>
+<p>Логин - {{new_user.username}}</p>
+<p>Имя - {{new_user.first_name}}</p>
+<p>Эл. почта - {{new_user.email}}</p>
+{% endblock content %}

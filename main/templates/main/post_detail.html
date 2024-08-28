@@ -1,0 +1,33 @@
+{% extends "main/base.html" %}
+
+{% block content%}
+<h2>Информация о посте</h2>
+<p>Пост № {{post.pk}}</p>
+<p>Автор поста - {{post.author}}</p>
+<p>Заголовок поста - {{post.title}}</p>
+<p>Текст поста - {{post.text}}</p>
+{% if post.image %}
+    <img width='300' height="200" src="{{post.image.url}}"/>
+{% endif %}
+<h3>Комментарии:</h3>
+{% for comment in comments %}
+    <p>{{comment.author}}:</p>
+    <p>{{comment.text}}</p>
+    {% if user == comment.author %}
+        <p><a href="{% url 'main:comment_edit' post_id=comment.post.pk comment_id=comment.pk %}">Редактировать</a> </p>
+        {%comment%}
+        <p><a href="{% url 'main:comment_delete' post_id=comment.post.pk comment_id=comment.pk %}">Удалить</a></p>
+        {%endcomment%}
+    {% endif %}
+{% endfor %}
+<form method="post">
+    {%csrf_token%}
+    {{form.as_p}}
+    <button type="submit">Отправить</button>
+</form>
+{% if user == post.author %}
+    <p><a href="{% url 'main:post_update' post.pk %}">Редактировать публикацию</a> </p>
+    <p><a href="{% url 'main:post_delete_confirm' post.pk %}">Удалить публикацию</a> </p>
+{% endif %}
+
+{% endblock content%}

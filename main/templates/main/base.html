@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+</head>
+<body>
+{%  if user.is_authenticated %}
+    Привет, <a href="{% url 'users:profile' pk=user.pk %}">{{user.username}}</a>
+    <p><a href="{% url 'users:logout' %}">Выйти</a></p>
+{% else %}
+    <p><a href="{% url 'users:register' %}">Регистрация</a></p>
+    <p><a href="{% url 'users:login' %}">Войти</a></p>
+{% endif %}
+
+{% block menu %}
+<style>
+    #navbar {
+       margin: 0;
+       padding: 0;
+       list-style-type: none;
+      }
+    #navbar li { display: inline; }
+</style>
+<ul id="navbar">
+  <li><a href="{% url 'main:posts' %}">Посты</a></li>
+  <li><a href="{% url 'main:create post' %}">Добавить пост</a></li>
+  <li><a href="#">Контакты</a></li>
+  <li><a href="#">О нас</a></li>
+</ul>
+{% endblock menu %}
+
+{% block content %}
+{% endblock content %}
+
+</body>
+</html>

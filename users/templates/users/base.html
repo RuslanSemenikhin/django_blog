@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+</head>
+<body>
+{% block menu %}
+<style>
+    #navbar {
+       margin: 0;
+       padding: 0;
+       list-style-type: none;
+      }
+    #navbar li { display: inline; }
+</style>
+<ul id="navbar">
+  <li><a href="{% url 'main:posts' %}">Посты</a></li>
+  <li><a href="{% url 'main:create post' %}">Добавить пост</a></li>
+  <li><a href="#">Контакты</a></li>
+  <li><a href="#">О нас</a></li>
+</ul>
+{% endblock menu %}
+
+{% block content %}
+{% endblock content %}
+
+</body>
+</html>

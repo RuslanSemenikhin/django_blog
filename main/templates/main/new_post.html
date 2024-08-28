@@ -1,0 +1,25 @@
+{% extends 'main/base.html' %}
+{% block content%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            background-color: #E1E57A
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+</head>
+<body>
+<h2>Страница создания нового поста</h2>
+
+<form action="{% url 'main:create post' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">Создать пост</button>
+</form>
+
+</body>
+</html>
+{% endblock content%}

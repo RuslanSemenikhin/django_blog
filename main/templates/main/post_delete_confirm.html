@@ -1,0 +1,30 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<h4>Вы действительно хотите удалить пост?</h4>
+<ul>
+<p>Номер: {{post.pk}}</p>
+<p>Заголовок: {{post.title}}</p>
+</ul>
+<div>
+    <div style="float: left">
+        <form method="post" id="form_delete">
+            {% csrf_token %}
+            <button onclick="submit">Удалить</button>
+        </form>
+    </div>
+    <div style="float: left">
+        <ul></ul>
+    </div>
+    <div style="float: left">
+        <form action="{{post.get_absolute_url}}" method="GET" id="form_cancel">
+            <button onclick="submit">Отмена</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}
+
+{% comment %}
+    <a href="{% url 'main:post_delete' post.pk %}" onclick="document.getElementById('form_delete').submit()">Удалить</a>
+    <a href="{% url 'main:post_detail' post.pk %}">Отмена</a>
+{% endcomment %}

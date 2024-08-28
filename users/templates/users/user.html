@@ -1,0 +1,12 @@
+{% extends "users/base.html" %}
+
+
+{% block content %}
+<h2>Информация о полльзователе</h2>
+<hr>
+<p>Логин - {{user.username}}</p>
+<p>Имя - {{user.first_name}}</p>
+<p>Эл. почта - {{user.email}}</p>
+
+<p>Время регистрации - {{user.date_joined|date:'d-m-Y H:i'}}</p>
+{% endblock content %}
